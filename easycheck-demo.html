@@ -1,0 +1,64 @@
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script type="text/javascript" src="easycheck.js"></script>
+	<style type="text/css">
+		form span.error {
+		    color: #000;
+		    font-family: Verdana;
+		    font-size: 11px;
+		    margin: 0;
+		    display: block;
+		    position: absolute;
+		    float: left;
+		    background-color: #FFD919;
+		    border-radius: 11px;
+		    padding: 4px 10px;
+		    font-weight: bold;
+		    box-shadow: 0 0 5px #999;
+		    -webkit-box-shadow: 0 0 5px #999;
+		    -moz-box-shadow: 0 0 5px #999;
+		    z-index: 5;
+		}
+
+		form span.message {
+		    display: block;
+		}
+	</style>
+</head>
+<body>
+	<form id="myForm">
+		<p><input type="text" class="validate{required,digit}" placeholder="012345"/></p>
+		<p><input type="text" class="validate{required,email}" placeholder="account@email.com"/></p>
+		<p><input id="campoNombres" type="text" class="validate{required,text}" placeholder="User Name"/></p>
+		<p><input type="text" class="validate{money}" placeholder="$1,250,000.00"/></p>
+		<p>
+			<select id="campoSeleccion" class="validate{required}">
+				<option value="">--Selecciona--</option>
+				<option value="1">Item 1</option>
+				<option value="2">Item 2</option>
+				<option value="3">Item 3</option>
+			</select>
+		</p>
+		<p><input type="checkbox" class="validate{checked}" /></p>
+		<p><input type="submit" onclick="return validator.validate()" /></p>
+	</form>
+	<script type="text/javascript">
+		var validator;
+
+		$(document).on("ready", function() {
+			validator = new EasyCheck("myForm");
+
+			validator.customMessages("campoNombres", {
+				required: "Ingresa un nombre",
+				text: "Es un nombre algo raro, intenta otro."
+			});
+
+			validator.customMessages("campoSeleccion", {
+				required: "No haz seleccionada nada"				
+			});
+		});
+	</script>
+</body>
+</html>

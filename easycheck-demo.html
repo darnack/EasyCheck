@@ -28,7 +28,7 @@
 	</style>
 </head>
 <body>
-	<form id="myForm">
+	<form id="myForm" class="validate">
 		<p><input type="text" class="validate{required,digit}" placeholder="012345"/></p>
 		<p><input type="text" class="validate{required,email}" placeholder="account@email.com"/></p>
 		<p><input id="campoNombres" type="text" class="validate{required,text}" placeholder="User Name"/></p>
@@ -42,13 +42,13 @@
 			</select>
 		</p>
 		<p><input type="checkbox" class="validate{checked}" /></p>
-		<p><input type="submit" onclick="return validator.validate()" /></p>
+		<p><input type="submit" class="validator" /></p>
 	</form>
 	<script type="text/javascript">
 		var validator;
 
 		$(document).on("ready", function() {
-			validator = new EasyCheck("myForm");
+			validator = EasyCheckInit()[0]
 
 			validator.customMessages("campoNombres", {
 				required: "Ingresa un nombre",
